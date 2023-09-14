@@ -115,7 +115,7 @@ app.get('/api/config/paypal', (req, res) => res.send({ clientId: process.env.PAY
 app.use('/api/upload', uploadRoutes);
 
 const __dirname = path.resolve(); //set __dirname to curr directory
-app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+app.use('/uploads', express.static(path.join(__dirname, '/uploads'))); //make static
 
 app.use(notFound);
 app.use(errorHandler);

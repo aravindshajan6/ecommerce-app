@@ -19,7 +19,7 @@ function checkFileType (file, cb) {
     const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
     const mimetype = filetypes.test(file.mimetype);
     if(extname && mimetype) { 
-        return cb ( null, true); 
+        return cb ( null, true);  //callback
         //cb 1st argument is error, so set it as null
     } else {
          cb('Images only !');
@@ -30,7 +30,7 @@ const upload  = multer ({
     storage,
 });
 
-router.post('/', upload.single('image'), (req, res) => {
+router.post('/', upload.single('image'), (req, res) => { //single() contains feild name
     res.send({
         message: 'Image Uploaded!',
         image: `/${req.file.path}`,

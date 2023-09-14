@@ -3,6 +3,7 @@ import asyncHandler from '../middleware/asyncHandler.js'; //error handler
 import Razorpay from 'razorpay';
 import crypto from 'crypto';
 // import { randomBytes, createHmac } from 'crypto';
+// import  usePayOrderMutation  from '../../frontend/src/slices/orderApiSlice';
 
 
 //@desc create orders (rzp)
@@ -37,7 +38,7 @@ const razorpayPayment = asyncHandler( async (req, res) => {
             }  
 
                 res.status(200).json({ data: order });
-                console.log("Order details : ",order);
+                console.log("Order details : ", order);
             
         });
     } catch (error) {
@@ -81,10 +82,7 @@ const razorpayVerify = asyncHandler( (req, res) => {
 
                 if( razorpay_signature === expectedSign) {
                     return res.status(200).json({ message: "RZP payment verified successfully"})
-
-                    // code to update order status to paid
-                    payOrder({ orderId, details });
-                    refetch(); 
+                        //code to update payment
 
                     
                 } else {
