@@ -1,0 +1,130 @@
+E-commerce app
+I. INTRO
+
+1. 	- created a boilerplate using CRA 
+	-'frontend' folder, remove '.git' folder from 'frontend'folder
+	-the '.git' folder should be in root directory of application, move '.gitignore'
+	 to root directory, create .env file in root
+	-run git init to initialize git repo.
+
+2.	-create a new repo in github and push the files with an initial commit
+
+3.	- in 'frontend' folder, install react-bootstrap, bootstrap, react-icons
+	- import bootstrap.min.css (default css file)
+
+II. FRONTEND START
+
+4. 	-create 'components' folder
+		-create Header.jsx 
+		-create Footer.jsx
+
+5.	-set up dummy products.js file with an array of products
+	-create 'screens' folder in src of frontend
+		-create HomeScreen.jsx and import products.js
+		-map through products and display it in columns
+	-create Product.jsx component to use in HomeScreen.jsx
+
+6.	-setup  react-router-dom 
+		-import createBrowserRouter, createRoutesFromElements, Route, routerProvider
+		-create router and set it to createBrowserRouter() and setup routes for 
+			App and HomeScreen
+		-import Outlet from react-router-dom in App.js You use the <Outlet /> component 
+		within the parent route component to specify where the content of the child routes 
+		should be rendered. It acts as a placeholder for the child route content.
+		, and (the createBrowserRouter)
+		-import Link in Product.jsx and replace <a> in <Card> to enable the 
+			client side js to prevent loading
+		-for <a> in navbar in Header component, use react-router-bootstrap
+			-import <LinkContainer to=''> and use it to wrap Navbar.brand and Nav.Link
+			(this provides client-side routing and works well with react-router, )
+
+7.	-create Rating.jsx component (props - { value, text} )
+		-import star icons from react-icons
+		-import Rating.jsx to Product.jsx
+
+8.	-create ProductScreen.jsx
+		-import useParams to get productId from url and import products.js 
+			to find the product that matches the id
+
+III.SERVING AND FETCHING DATA
+
+1.	-create a server-side package.json (npm init) in root
+	-use "module" type in package.json, to use ES modules in app 
+		(default in node.js is commonJS which uses 'const x = require(''); )
+	-create folder backend in root directory
+	-create folder data in 'backend' and copy products.js to it
+	-create routes for root route, all products and single product (use params to 
+		get id from req url and match using find())
+
+2.	-install nodemon and concurrently as devDependencies (-D) for efficiency
+	-add scripts in root "start" : "node backend/server.js"
+			     "server" : "nodemon backend/server.js"
+			     "client" : "npm start --prefix frontend" 
+				(--prefix goes to frontend folder first )
+			     "dev" : "concurrently \"npm run server\" \"npm run client\" "
+	-create .env file for environment variables (package dotenv) as devDependency
+		( changing .env file requires server restart even in nodemon )
+3.	-fetch data using Axios (install axios package in frontend)
+	-add a proxy in package.json to avoid typing complete localhost address
+		("http://localhost:5000") while fetching data in axios etc.
+		
+	-now instead of mapping throught products, fetch using axios and display it
+		useEffect()- to set products, useState()-to fetch products
+		(in homeScreen)
+	-for single product provide productId as dependecy in useEffect(), get
+		productId using useParams() hook, (in productScreen)
+
+IV. MONGODB & MONGOOSE
+
+1.	-create org and project, create db user, add conn string to .env,
+		add .env to .gitigore
+	-install mongoose in root, create config folder in backend and add db.js 
+		and connect using conn string.( use asyn and try,catch )
+	
+2.	-model data for all the data(product, users, orders), create models folder inside backend
+	-productModel.js : create Schema for products , user feild for recog. user
+	-add {timestamps: true at end for createdAt and updatedAt feilds
+	-userModel for users ,(add isAdmin feild)
+	-orderModel for orders - orderItems feild is array
+
+3.	-remove _id feild from products.js ,cuz mongoDB adds it automatically
+	-in data folder , create users.js, install bcryptjs in root,
+	******seed data******
+	-seeder.js file in backend containers importData() and destroyData()
+		delete all data before importing data
+	-insert data into users collection using user.insertMany(users) = createdUsers
+	-insert data into products collection, include user feild by getting adminUser ID
+		createdUsers[0]._id;
+	-use process.argv[] to get args passed on terminal commands
+		if -d : destroyData()
+		else if -i : insertData()
+		else : deleteOrderData()  (-od )
+	- run using script (root)
+		"data.import" : "node backend/seeder.js"
+		"data.destroy" : "node backend/seeder.js -d"
+	
+4.	-POSTMAN
+		-create an environment and add baseURL : http://localhost:5000/api and save
+		-setup routes for different routes	
+
+5.	-routes folder in backend for routes
+		-productRoutes : use router for routes from express.Router()
+			(helps to reduce files in entry file)
+
+6.	-asyncHandler - ellegant error handling (we can avoid the try&catch blocks)
+		-middleware folder in backend : file asyncHandler.js
+
+7.	-create controllers folder for controllers for routes
+		-productController.js : use asyncHandler()
+		-use custom error handling to throw Errors
+		-export individual controller functions
+
+REDUX
+
+1.	-install reduxjs/toolkit and react-redux (front-end package.json)
+
+2.	-create store.js file in frontend folder (acts as entry point od redux)
+
+3.	-wrap routerProvider in index.js using provider form react-redux and pass store
+
+4.	-ww
