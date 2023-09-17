@@ -105,7 +105,7 @@ const ProfileScreen = () => {
                     >
                     </Form.Control>
                 </Form.Group>
-                <Button type='submit' variant='primary' className='my-2'>Update
+                <Button type='submit' variant='primary' className='my-2 btn1'>Update
                 </Button>
                 { loadingUpdateProfile && <Loader /> }
             </Form>
@@ -135,7 +135,7 @@ const ProfileScreen = () => {
                                 <td>{order.isDelivered ? ( order.isDeliveredAt.substring(0, 10) ) : ( <FaTimes style={{ color: 'red' }}/> ) }</td>
                                 <td>
                                     <LinkContainer to={`/order/${order._id} `}>
-                                        <Button className='btn-sm' variant='light'>
+                                        <Button className='btn-sm btn2' variant='light'>
                                             Details
                                         </Button>
                                     </LinkContainer>

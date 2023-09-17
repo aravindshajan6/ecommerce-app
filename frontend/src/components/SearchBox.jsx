@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { useParams, useNavigate } from 'react-router-dom';
+import '../assets/styles/Header.css'
 
 const SearchBox = () => {
     const navigate = useNavigate();
@@ -27,7 +28,7 @@ const SearchBox = () => {
             placeholder='Search Products...'
             className='mr-sm-2 ml-sm-5'
         ></Form.Control>
-        <Button className="p-2 mx-2" type='submit' variant='outline-light'>Search</Button>
+        <Button className="p-2 mx-2 btn1" type='submit' variant='outline-light'>Search</Button>
     </Form>
   )
 }

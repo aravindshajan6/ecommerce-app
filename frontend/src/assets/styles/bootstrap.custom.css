@@ -1,9 +1,81 @@
-@charset "UTF-8";
+/* @charset "UTF-8";
 /*!
  * Bootstrap  v5.3.0-alpha1 (https://getbootstrap.com/)
  * Copyright 2011-2022 The Bootstrap Authors
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+
+
+ /* my styles */
+
+ .navbar {
+  background-color: #222831 !important;
+ }
+
+
+ .home-carousel {
+  /* background-color: rgb(188, 40, 40) !important; */
+  object-fit: fill !important ;
+ }
+
+ .carousel-img {
+  object-fit: contain !important;
+  height: 600px !important;
+  width: 1500px !important;
+ }
+
+ /* *********added card body************ */
+.card {
+  background-color: rgb(255, 255, 255) !important;
+  color: rgb(1, 1, 1) !important;
+}
+.card-home-screeen {
+  background-color: rgb(255, 255, 255) !important;
+  color: rgb(1, 1, 1) !important;
+}
+
+.price-card {
+  background-color: rgb(243, 1, 1) !important;
+  color: rgb(1, 1, 1) !important;
+}
+
+.card-ls-group {
+  color: rgb(253, 248, 248) !important;
+  background-color: #222831 !important;
+  border-color: black  !important;
+  
+}
+
+.card-home-screeen:hover {
+  transition-duration: 0.2s !important;
+  transition: ease-in ;
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+
+.img1{
+  border-radius: 10px;
+}
+
+.btn1 {
+  background-color: #00ADB5 !important;
+}
+.btn2 {
+  background-color: #073f92 !important;
+  color: white !important;
+}
+
+.btn1-danger {
+  background-color: rgb(198, 29, 29) !important;
+}
+
+
+.form-select {
+  background-color: #97989a !important;
+}
+
+
+
 :root,
 [data-bs-theme='light'] {
   --bs-blue: #3c4c5d;
@@ -87,18 +159,19 @@
   --bs-body-font-size: 1rem;
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
-  --bs-body-color: #7b8a8b;
-  --bs-emphasis-color: #000;
+  --bs-body-color: #000000;
+  --bs-emphasis-color: #e51e1e;
   --bs-emphasis-color-rgb: 0, 0, 0;
-  --bs-secondary-color: rgba(123, 138, 139, 0.75);
+  --bs-secondary-color: rgba(21, 157, 167, 0.75);
   --bs-secondary-color-rgb: 123, 138, 139;
   --bs-secondary-bg: #bdcecf;
   --bs-secondary-bg-rgb: 189, 206, 207;
-  --bs-tertiary-color: rgba(123, 138, 139, 0.5);
+  --bs-tertiary-color: rgba(151, 201, 23, 0.5);
   --bs-tertiary-color-rgb: 123, 138, 139;
   --bs-tertiary-bg: #f4f4f4;
   --bs-tertiary-bg-rgb: 244, 244, 244;
-  --bs-body-bg: #fff;
+  /*************** body background-color *******************/
+  --bs-body-bg: #EEEEEE; 
   --bs-body-bg-rgb: 255, 255, 255;
   --bs-link-color: #3c4c5d;
   --bs-link-color-rgb: 60, 76, 93;
@@ -134,7 +207,7 @@
 }
 
 [data-bs-theme='dark'] {
-  --bs-body-color: #7b8a8b;
+  --bs-body-color: #7b8b82;
   --bs-body-color-rgb: 123, 138, 139;
   --bs-body-bg: #7b8a8b;
   --bs-body-bg-rgb: 123, 138, 139;
@@ -470,6 +543,7 @@ label {
 }
 
 button {
+  /* background-color: rgb(11, 8, 211) !important; */
   border-radius: 0;
 }
 
@@ -4449,6 +4523,7 @@ fieldset:disabled .btn {
   --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
+
 .card {
   --bs-card-spacer-y: 1.2rem;
   --bs-card-spacer-x: 1.2rem;
@@ -4458,7 +4533,7 @@ fieldset:disabled .btn {
   --bs-card-border-width: var(--bs-border-width);
   --bs-card-border-color: var(--bs-border-color-translucent);
   --bs-card-border-radius: var(--bs-border-radius);
-  --bs-card-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1),
+  --bs-card-box-shadow: 0 4px 6px rgba(190, 33, 33, 0.1),
     0 2px 4px rgba(255, 20, 20, 0.06);
   --bs-card-inner-border-radius: calc(
     var(--bs-border-radius) - (var(--bs-border-width))
@@ -4468,7 +4543,7 @@ fieldset:disabled .btn {
   --bs-card-cap-bg: rgba(var(--bs-body-color-rgb), 0.03);
   --bs-card-cap-color: ;
   --bs-card-height: ;
-  --bs-card-color: ;
+  /* --bs-card-color: red !important; */
   --bs-card-bg: var(--bs-body-bg);
   --bs-card-img-overlay-padding: 1.2rem;
   --bs-card-group-margin: 0.75rem;
@@ -12117,4 +12192,4 @@ fieldset:disabled .btn {
   .d-print-none {
     display: none !important;
   }
-}
+} 

@@ -11,7 +11,8 @@
     "dev": " concurrently \"npm run server\" \"npm run client\" ",
     "data:import": "node backend/seeder.js -i",
     "data:destroy": "node backend/seeder.js -d",
-    "order:destroy": "node backend/seeder.js -od"
+    "order:destroy": "node backend/seeder.js -od",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
   },
   "author": "Aravind Shajan",
   "license": "MIT",

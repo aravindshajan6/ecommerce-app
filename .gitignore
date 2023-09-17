@@ -4,6 +4,9 @@
 node_modules
 /.pnp
 .pnp.js
+paypal.txt
+atlas.txt
+notes.txt
 
 # testing
 /coverage

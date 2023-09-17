@@ -5,8 +5,9 @@ import { useSelector, useDispatch} from 'react-redux';
 import { useLogoutMutation } from '../slices/usersApiSlice';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../slices/authSlice';
-import logo from '../assets/logo.png';
+import logo from '../assets/logo-nb.png';
 import SearchBox from './SearchBox';
+import '../assets/styles/Header.css';
 
 const  Header = () => {
 
@@ -29,13 +30,18 @@ const  Header = () => {
         }
     }
 
+   const logoStyle = {
+    height: '60px',
+    width: '140px',
+   }
+
     return(
         <header>
             {/* 'lg' provides hamburger menu on min-width */}
-            <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect > 
+            <Navbar className='navbar' variant='dark' expand='lg'  collapseOnSelect > 
                 <Container> 
                     <LinkContainer to='/' >
-                        <Navbar.Brand  > <img src={logo}  alt='e-commerce'></img> E-store</Navbar.Brand>
+                        <Navbar.Brand  > <img src={logo} style={logoStyle}  alt='e-commerce'></img> </Navbar.Brand>
                     </LinkContainer>
                     <Navbar.Toggle aria-controls='basic-navbar-nav'></Navbar.Toggle>
                     <Navbar.Collapse id='basic-navbar-nav'>

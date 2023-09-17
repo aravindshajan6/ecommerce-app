@@ -1,8 +1,15 @@
+// import { blue } from "colors";
 import { Container, Row, Col } from "react-bootstrap";
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
 
+   
+    // const footerStyles = {
+    //     backgroundColor: 'blue' ,
+    // }
+
+    
     return(
         
             <footer>

@@ -84,13 +84,13 @@ const ProductScreen = () => {
   return (
     <>
 
-        <Link className='btn btn-light my-3' to='/' >GO Back</Link>
+        <Link className='btn btn-light my-3 btn1' to='/' >GO Back</Link>
         { isLoading ? ( <Loader /> ) : error ? (<Message variant='danger'>{error?.data?.Message || error.error }</ Message>) : (
         <> 
         <Meta title={product.name}/>
         <Row>
             <Col md={5} >
-                <Image src={product.image} style={{ height:'300px', width: '100%', objectFit: 'cover' }} alt={product.name} fluid />
+                <Image src={product.image} style={{ height:'300px', width: '100%', objectFit: 'cover' }} className='img1' alt={product.name} fluid />
             </Col>
             <Col md={4} >
             <ListGroup variant='flush'>
@@ -109,9 +109,9 @@ const ProductScreen = () => {
             </ListGroup>
             </Col>
             <Col md={3} >
-                <Card>
-                    <ListGroup variant='flush'>
-                        <ListGroup.Item>
+                <Card className='price-card'>
+                    <ListGroup variant='flush' >
+                        <ListGroup.Item className='card-ls-group'>
                             <Row>
                                 <Col>
                                     Price:
@@ -121,7 +121,7 @@ const ProductScreen = () => {
                                 </Col>
                             </Row>
                         </ListGroup.Item>
-                        <ListGroup.Item>
+                        <ListGroup.Item className='card-ls-group'>
                             <Row>
                                 <Col>
                                     Status:
@@ -132,11 +132,11 @@ const ProductScreen = () => {
                                     </strong>
                                 </Col>
                             </Row>
-                        </ListGroup.Item>
+                        </ListGroup.Item >
 
                         {
                             product.countInStock > 0 && (
-                                <ListGroup.Item>
+                                <ListGroup.Item className='card-ls-group'>
                                     <Row>
                                         <Col>Qty</Col>
                                         <Col>
@@ -154,8 +154,8 @@ const ProductScreen = () => {
                             )
                         }
 
-                        <ListGroup.Item>
-                            <Button className='btn-block' type='button' disabled={ product.countInStock === 0 } 
+                        <ListGroup.Item className='card-ls-group'>
+                            <Button className='btn-block btn1' type='button' disabled={ product.countInStock === 0 } 
                             onClick={addToCartHandler}>
                         Add to Cart
                         </Button>
@@ -187,12 +187,13 @@ const ProductScreen = () => {
                     <Form onSubmit={ submitHandler }>
                         <Form.Group controlId="rating" className='my-2'>
                             <Form.Label>Rating</Form.Label>
-                            <Form.Control as='select'
+                            <Form.Control as='select' 
+                            className='form-select'
                             value={rating}
                             onChange={(e) => setRating(Number(e.target.value))}
                             >
                                 <option value="">Select . . .</option>
-                                <option value="1">1 - Poor.</option>
+                                <option className='form-select' value="1">1 - Poor.</option>
                                 <option value="2">2 - Fair</option>
                                 <option value="3">3 - Good</option>
                                 <option value="4">4 - Very Good</option>
@@ -210,6 +211,7 @@ const ProductScreen = () => {
                             </Form.Control>
                         </Form.Group>
                         <Button 
+                            className='btn1'
                             disabled={ loadingProductReview }
                             type='submit'
                             variant='primary'

@@ -113,7 +113,7 @@ const PaymentScreen = () => {
                     </Col>
                     
                 </Form.Group>
-                <Button type='submit'>Continue</Button>
+                <Button type='submit' className='btn1'>Continue</Button>
             </Form>
         
     </FormContainer>

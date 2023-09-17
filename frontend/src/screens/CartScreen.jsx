@@ -60,7 +60,7 @@ const CartScreen = () => {
                       </Form.Control>
                     </Col>
                     <Col md={2}>
-                      <Button type='button' variant='light' onClick={ () => removeFromCartHandler(item._id)}>
+                      <Button type='button' className='btn1-danger'   variant='light' onClick={ () => removeFromCartHandler(item._id)}>
                         <FaTrash/>
                       </Button>
                     </Col>
@@ -81,7 +81,7 @@ const CartScreen = () => {
             .toFixed(2)}
           </ListGroup.Item>
           <ListGroup.Item>
-            <Button type='button' className='btn-block' disabled={ cartItems.length === 0}
+            <Button type='button' className='btn-block btn1' disabled={ cartItems.length === 0}
             onClick={ checkoutHandler }>
               Proceed To Checkout
             </Button>

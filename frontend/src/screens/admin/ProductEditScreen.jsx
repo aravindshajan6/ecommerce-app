@@ -28,6 +28,18 @@ const ProductEditScreen = () => {
 
     const navigate = useNavigate();
 
+    // const setImages = (images) => {
+    //     if(images.length) {
+    //         const imagesArray = [];
+    //         for(const image of images) {
+    //             imagesArray.push(image.url);
+    //         }
+    //         setImages(imagesArray);
+    //     } else {
+    //         setImages([]);
+    //     }
+    // };
+
     useEffect(() => { 
         if( product ) {
             setName(product.name);
@@ -70,11 +82,15 @@ const ProductEditScreen = () => {
            const formData = new FormData();
 
         // console.log(e.target.files[0]);
+        // for( let i = 0; i< e.target.files.length; i++) {
 
-        formData.append('image', e.target.files[0]);
+            formData.append('image', e.target.files[0]);
+        // }
+
         try {
             const res = await uploadProductImage(formData).unwrap();
             toast.success(res.message);
+            console.log(res.image)
             setImage(res.image);
         } catch (err) {
             toast.error(err?.data?.message || err.error);
@@ -116,8 +132,11 @@ const ProductEditScreen = () => {
                         <Form.Label>Image</Form.Label>
                         <Form.Control
                         type='text'
+                        // multiple
+                        // encType="multipart/form-data"
                         placeholder='Enter image url'
-                        value={ image } onChange={ (e) => setImage }
+                        // name='files'
+                        value={ image } onChange={ (e) => setImage(e.target.value) }
                         ></Form.Control>
                         <Form.Control
                         type='file'
@@ -125,6 +144,25 @@ const ProductEditScreen = () => {
                         onChange={ uploadFileHandler }>
                     </Form.Control>
                     </Form.Group>
+
+                    {/* <Form.Group controlId='image' className='my-2'>
+                        <Form.Label>Images</Form.Label>
+                        <Form.Control
+                        type='text'
+                        value={ image }
+                        multiple
+                        encType="multipart/form-data"
+                        placeholder='Enter image url'
+                        onChange={ (e) => setImage(e.target.value) }
+                        ></Form.Control>
+                        <Form.Control
+                        type='file'
+                        label='Choose file'
+                        multiple
+                        onChange={ uploadFileHandler }>
+                    </Form.Control> */}
+                    {/* </Form.Group> */}
+
                     { loadingUpload && <Loader />}
                     <Form.Group controlId='brand' className='my-2'>
                         <Form.Label>Brand </Form.Label>

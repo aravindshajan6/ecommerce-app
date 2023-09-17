@@ -17,7 +17,6 @@ import { toast } from 'react-toastify';
 
 // import { savePaymentMethod } from '../slices/cartSlice';
 
-import axios from 'axios';
 
 const OrderScreen = () => {
 
@@ -68,7 +67,7 @@ const OrderScreen = () => {
             }
     }, [order, paypal, paypalDispatch, loadingPayPal, errorPayPal ]);
 
-    //change payment stats
+    //change payment status paypal
     function onApprove(data, actions) { 
         console.log("inside paypal payment status update");
         return actions.order.capture()
@@ -83,14 +82,7 @@ const OrderScreen = () => {
                                 }
                              })
     }
-    //update payment for RZP
-    async function  onPay() {
-        console.log("inside Rzp payment status update");
-        await payOrder({ orderId, details : { payer: { } } });
-        refetch();
-        toast.success('RZP payment successfull')
-
-    }
+   
 
 
     //test for changing payment status
@@ -104,6 +96,7 @@ const OrderScreen = () => {
         toast.error(err.message);
     }
 
+    //Paypal
     function createOrder(data, actions) {
         return actions.order.create({ 
             purchase_units: [
@@ -131,13 +124,12 @@ const OrderScreen = () => {
 
     const razorpayHandler = async (e) => {
         e.preventDefault();
-        console.log(order.totalPrice);
         try {
             console.log(order.totalPrice);
             console.log('inside razorpay handler');
             // const orderUrl = 'http://localhost:5000/api/payment/orders';
             // const { data } =  await axios.post(orderUrl, { amount: order.totalPrice * 80 }, { timeout: 10000 })
-            const { data } = await createPaymentOrder(order.totalPrice);
+            const { data } = await createPaymentOrder(order.totalPrice * 80);
             console.log(data);
             console.log(order.paymentMethod);
             const initReturn = initPayment(data.data);
@@ -158,7 +150,7 @@ const OrderScreen = () => {
 			description: "Test Transaction",
 			img: "",
 			order_id: data.id,
-			handler: async (response) => {
+			handler: async ( response ) => {
 				// try {
 				// 	const verifyUrl = "http://localhost:5000/api/payment/verify";
 				// 	const  data  = await axios.post(verifyUrl, response);
@@ -167,21 +159,26 @@ const OrderScreen = () => {
 				// } catch (error) {
 				// 	console.log(error);
 				// }
-                const {data} = await verifyPayment(response);
-                console.log("razorpay data : " ,data)
+                const { data } = await verifyPayment( response );
+                console.log("razorpay data : ", data)
                 try {
-                    const details = {id:data.id,status:data.status,update_time:data.update_time,payer:{ email_address:data.email}}
-                    console.log('razorpay details : ' ,details)
+                    const details = {
+                        id: data.id, 
+                        status: data.status, 
+                        update_time: data.update_time, 
+                        payer:{ email_address: data.email }
+                    }
+                    console.log('Razorpay details : ' , details)
                     await payOrder({ orderId, details});
-                    refetch()
-                    toast.success('paiyment Successful');
+                    refetch();
+                    toast.success('Payment Successful !');
                 } catch (error) {
                     console.log(error.message);
-                    toast.error("Razorpay verification failed")
+                    toast.error("Razorpay verification failed !");
                 }
                     },
                     theme: {
-                        color: "#3399cc",
+                        color: "#2d0eef",
                     },
                 };
     // create new razorpay instance using options 
@@ -285,10 +282,10 @@ const OrderScreen = () => {
 
                                 { isPending ? <Loader /> : ( 
                                     <div>
-                                        <Button onClick={ onApproveTest} style={{marginBottom: '10px'}}>Test Pay Order
-                                        </Button>
+                                        {/* <Button className='btn1' onClick={ onApproveTest} style={{marginBottom: '10px'}}>Test Pay Order
+                                        </Button> */}
                                         <div>
-                                            <PayPalButtons 
+                                            <PayPalButtons className=''
                                             createOrder= {createOrder } 
                                             onApprove= {onApprove} 
                                             onError= {onError}
@@ -308,11 +305,11 @@ const OrderScreen = () => {
 
                                 { isPending ? <Loader /> : ( 
                                     <div>
-                                        <Button onClick={ onApproveTest} style={{ marginBottom: '10px' }}> Test Pay Order
-                                        </Button>
+                                        {/* <Button className='btn1' onClick={ onApproveTest} style={{ marginBottom: '10px' }}> Test Pay Order
+                                        </Button> */}
                                         <div>
                                             <Button 
-                                            onPay= {onPay} 
+                                            className='btn1'
                                             onClick={ razorpayHandler }>pay using RazorPay</Button>
                                         </div>
                                     </div>
